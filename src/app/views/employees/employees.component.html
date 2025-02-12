@@ -1,0 +1,18 @@
+
+<div class="employees-container">
+  <div class="ag-theme-alpine ag-grid-container">
+    <ag-grid-angular class="ag-grid" [rowData]="employees" [columnDefs]="columnDefs"
+      [pagination]="true" [rowSelection]="rowSelection" [context]="gridOptions.context" [domLayout]="'autoHeight'"
+      (gridReady)="onGridReady($event)" class="ag-theme-alpine" [paginationPageSize]="paginationPageSize"
+      [paginationPageSizeSelector]="paginationPageSizeSelector" 
+      (selectionChanged)="onSelectionChanged($event)"></ag-grid-angular>
+        <!-- [frameworkComponents]="frameworkComponents" -->
+  </div>
+  <div class="btn-container">
+    <button (click)="toggleModal()">Add</button>
+    <button (click)="toggleModal()">Update</button>
+    <button (click)="deleteSelectedEmployees()">Delete</button>
+  </div>
+</div>
+
+<app-add-employee *ngIf="showModal" (closeModal)="closeModal()" (newEmployee)="addEmployee($event)" [employeeToEdit]="selectedEmployee" (updateEmployee)="onEmployeeUpdated($event)"></app-add-employee>

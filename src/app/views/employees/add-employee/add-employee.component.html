@@ -1,0 +1,43 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>Add New Employee</h3>
+    <form [formGroup]="addEmployeeForm" (ngSubmit)="addUpdateEmployee()">
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" />
+      <div *ngIf="addEmployeeForm.get('name')?.invalid && addEmployeeForm.get('name')?.touched">
+        Name is required.
+      </div>
+
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" />
+      <div *ngIf="addEmployeeForm.get('username')?.invalid && addEmployeeForm.get('username')?.touched">
+        Username is required.
+      </div>
+
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" />
+      <div *ngIf="addEmployeeForm.get('email')?.invalid && addEmployeeForm.get('email')?.touched">
+        <div *ngIf="addEmployeeForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="addEmployeeForm.get('email')?.errors?.['email']">Enter a valid email.</div>
+      </div>
+
+
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" formControlName="phone" />
+      <div *ngIf="addEmployeeForm.get('phone')?.invalid && addEmployeeForm.get('phone')?.touched">
+        Phone is required.
+      </div>
+
+    <div>
+      <button type="submit" [disabled]="addEmployeeForm.invalid">
+        {{ employeeToEdit ? 'Update' : 'Add' }}
+      </button>
+      <button class="close-btn" (click)="close()">Close</button>
+    </div>
+    </form>
+
+  </div>
+</div>
